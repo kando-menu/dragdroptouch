@@ -459,6 +459,7 @@ var DragDropTouch = class {
     this._img = src.cloneNode(true);
     copyStyle(src, this._img);
     this._img.style.top = this._img.style.left = `-9999px`;
+    this._img.style.transform = "none";
     if (!this._imgCustom) {
       let rc = src.getBoundingClientRect(), pt = pointFrom(e);
       this._imgOffset = { x: pt.x - rc.left, y: pt.y - rc.top };
