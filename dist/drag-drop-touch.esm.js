@@ -505,6 +505,11 @@ var DragDropTouch = class {
     if (!(srcEvent && target)) return false;
     const evt = newForwardableEvent(type, srcEvent, target);
     evt.dataTransfer = this._dataTransfer;
+    if (type === "dragleave") {
+      evt.relatedTarget = this._getTarget(srcEvent);
+    } else if (type === "dragenter") {
+      evt.relatedTarget = this._lastTarget;
+    }
     target.dispatchEvent(evt);
     return evt.defaultPrevented;
   }

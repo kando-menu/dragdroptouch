@@ -572,6 +572,14 @@ class DragDropTouch {
 
     // DragEvents need a data transfer object
     (evt as any).dataTransfer = this._dataTransfer;
+
+    // Add relatedTarget for dragleave and dragenter events
+    if (type === "dragleave") {
+      (evt as any).relatedTarget = this._getTarget(srcEvent); // The element being entered
+    } else if (type === "dragenter") {
+      (evt as any).relatedTarget = this._lastTarget; // The element being left
+    }
+
     target.dispatchEvent(evt as unknown as Event);
     return evt.defaultPrevented;
   }
