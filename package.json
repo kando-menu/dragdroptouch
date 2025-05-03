@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "description": "A polyfill that enables HTML5 drag-and-drop support for touch devices",
   "type": "module",
+  "types": "ts/drag-drop-touch.d.ts",
   "main": "dist/drag-drop-touch.esm.js",
   "scripts": {
     "build:base": "esbuild --bundle --format=esm ./ts/drag-drop-touch.ts",
