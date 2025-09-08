@@ -1,6 +1,8 @@
+.gitignore
+.github
 demo/*
 dist/drag-drop-touch.debug.esm.js
-node_modules/*
-tests/*
-.gitignore
+node_modules
 server.js
+tests/*
+ts/*
