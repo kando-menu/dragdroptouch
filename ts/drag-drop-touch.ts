@@ -626,7 +626,7 @@ if (import.meta.url.includes(`?autoload`)) {
 // If we're not autoloading, expose DragDropTouch but not as the
 // class itself but as an object with an .enable() function.
 else {
-  globalThis.DragDropTouch = {
+  (globalThis as any).DragDropTouch = {
     enable: function (
       dragRoot: Document | Element = document,
       dropRoot: Document | Element = document,

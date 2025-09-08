@@ -129,9 +129,10 @@ export function copyStyle(src: HTMLElement, dst: HTMLElement) {
  */
 function copyComputedStyles(src: any, dst: any) {
   let cs = getComputedStyle(src);
-  for (let key of cs) {
+  for (let i = 0; i < cs.length; i++) {
+    const key = cs[i];
     if (key.includes("transition")) continue;
-    dst.style[key] = cs[key];
+    (dst.style as any)[key] = cs.getPropertyValue(key);
   }
   Object.keys(dst.dataset).forEach((key) => delete dst.dataset[key]);
 }

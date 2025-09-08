@@ -62,9 +62,10 @@ function copyStyle(src, dst) {
 }
 function copyComputedStyles(src, dst) {
   let cs = getComputedStyle(src);
-  for (let key of cs) {
+  for (let i = 0; i < cs.length; i++) {
+    const key = cs[i];
     if (key.includes("transition")) continue;
-    dst.style[key] = cs[key];
+    dst.style[key] = cs.getPropertyValue(key);
   }
   Object.keys(dst.dataset).forEach((key) => delete dst.dataset[key]);
 }
@@ -76,10 +77,6 @@ function removeTroublesomeAttributes(dst) {
 
 // ts/drag-dto.ts
 var DragDTO = class {
-  _dropEffect;
-  _effectAllowed;
-  _data;
-  _dragDropTouch;
   constructor(dragDropTouch) {
     this._dropEffect = "move";
     this._effectAllowed = "all";
@@ -159,20 +156,6 @@ var DefaultConfiguration = {
   pressHoldThresholdPixels: 0
 };
 var DragDropTouch = class {
-  _dragRoot;
-  _dropRoot;
-  _dragSource;
-  _lastTouch;
-  _lastTarget;
-  _ptDown;
-  _isDragEnabled;
-  _isDropZone;
-  _dataTransfer;
-  _img;
-  _imgCustom;
-  _imgOffset;
-  _pressHoldIntervalId;
-  configuration;
   /**
    * Deal with shadow DOM elements.
    *
